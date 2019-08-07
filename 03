@@ -1,0 +1,52 @@
+#!/bin/bash
+
+SETCOLOR_START="echo -en \\033[3;36m"
+SETCOLOR_NORMAL="echo -en \\033[0;39m"
+SETCOLOR_CHOICE="echo -en \\033[2;33m"
+
+$SETCOLOR_START
+read -n 1 -p "Ты уверен, что хочешь запустить это (y/n): " AMSURE 
+[ "$AMSURE" = "y" ] || exit
+echo "" 1>&2
+echo "" 1>&2
+echo "L" 1>&2
+echo "e" 1>&2
+echo "t" 1>&2
+echo "s" 1>&2
+echo " " 1>&2
+echo "g" 1>&2
+echo "o" 1>&2
+echo "!" 1>&2
+echo " " 1>&2
+echo ";)" 1>&2
+$SETCOLOR_NORMAL
+echo "" 1>&2
+echo "Как к тебе обращаться?"
+read NAME
+echo "Приятно познакомиться, ${NAME}."
+echo "Мой создатель научил меня всего нескольким командам."
+echo "По этому не надо ждать от меня каких то супер способностей."
+echo "И так, ${NAME}, вот что я умею:"
+while ( [ "$B" != "q" ] ) 
+do
+$SETCOLOR_CHOICE
+echo "1) Проверить память"
+echo "2) Почистить кэш"
+echo "3) Почистить терминал"
+echo "4) Открыть Finder"
+echo "5) Просмотреть активные процессы"
+echo "6) Показать календарь 2019 года"
+echo "7) Показать погоду"
+echo "если тебе просто не чем было заняться и надоело со мной говорить то нажми 'q'"
+read -n 1 B
+echo " " 1>&2 
+case "$B" in
+  "1") du -sh ~/*;;
+  "2") rm -rf ~/Library/*42_cache*;;
+  "3") clear;;
+  "4") open .;;
+  "5") top;;
+  "6") cal 2019;;
+  "7") curl wttr.in/Moscow | head -38;;
+esac
+done
